@@ -1,0 +1,33 @@
+{
+    "name": "nodebasic",
+    "version": "1.0.0",
+    "main": "src/server.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "nodemon --exec babel-node src/server.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "@babel/core": "7.15.5",
+      "@babel/node": "7.15.4",
+      "@babel/preset-env": "7.15.6",
+      "dotenv": "16.0.3",
+      "ejs": "3.1.6",
+      "express": "^4.18.2",
+      "nodemon": "2.0.22"
+    },
+    "devDependencies": {},
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/1canhhoa/nodejs_1canhhoa.git"
+    },
+    "keywords": [
+      "nodejs"
+    ],
+    "bugs": {
+      "url": "https://github.com/1canhhoa/nodejs_1canhhoa/issues"
+    },
+    "homepage": "https://github.com/1canhhoa/nodejs_1canhhoa#readme",
+    "description": ""
+  }
