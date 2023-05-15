@@ -12,12 +12,6 @@ var morgan = require('morgan')
 app.use(morgan('combined'))
 
 
-// app.use((req, res, next) => {
-//     //check => return res.send()
-//     console.log('>>> run into my middleware')
-//     console.log(req.method)
-//     // next();
-// })
 
 
 app.use(express.urlencoded({ extended: true }));
@@ -34,10 +28,16 @@ initAPIRoute(app);
 
 //handle 404 not found
 app.use((req, res) => {
-    return res.send('nhamvanhien')
+  return res.send('nhamvanhien')
 })
 
 
 app.listen(3000, () => {
-    console.log(`Example app listening at http://localhost:3000`)
+  console.log(`http://localhost:3000`)
 })
+app.use((req, res, next) => {
+  // check =>  res.send()
+  console.log('>>> run into my middleware')
+  console.log(req.method)
+  next()
+})     
