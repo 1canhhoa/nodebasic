@@ -1,33 +1,35 @@
 {
-    "name": "nodebasic",
-    "version": "1.0.0",
-    "main": "src/server.js",
-    "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1",
-      "start": "nodemon --exec babel-node src/index.js"
-    },
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-      "@babel/core": "7.15.5",
-      "@babel/node": "7.15.4",
-      "@babel/preset-env": "7.15.6",
-      "dotenv": "16.0.3",
-      "ejs": "3.1.6",
-      "express": "^4.18.2",
-      "nodemon": "2.0.22"
-    },
-    "devDependencies": {},
-    "repository": {
-      "type": "git",
-      "url": "git+https://github.com/1canhhoa/nodejs_1canhhoa.git"
-    },
-    "keywords": [
-      "nodejs"
-    ],
-    "bugs": {
-      "url": "https://github.com/1canhhoa/nodejs_1canhhoa/issues"
-    },
-    "homepage": "https://github.com/1canhhoa/nodejs_1canhhoa#readme",
-    "description": ""
+  "name": "nodebasic",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --exec babel-node src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/1canhhoa/Git/issues"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/1canhhoa/Git/issues"
+  },
+  "homepage": "https://github.com/haryphamdev/node-js-basic-hoidanit#readme",
+  "dependencies": {
+    "@babel/core": "7.15.5",
+    "@babel/node": "7.15.4",
+    "@babel/preset-env": "7.15.6",
+    "app-root-path": "3.0.0",
+    "body-parser": "1.19.0",
+    "caniuse-lite": "^1.0.30001487",
+    "dotenv": "10.0.0",
+    "ejs": "3.1.6",
+    "express": "4.17.1",
+    "morgan": "^1.10.0",
+    "multer": "1.4.3",
+    "mysql2": "2.3.0",
+    "nodemon": "2.0.12"
   }
+}

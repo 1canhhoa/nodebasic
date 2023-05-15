@@ -1,24 +1,43 @@
+import express from 'express';
+import configViewEngine from './configs/viewEngine';
+import initWebRoute from './route/web';
+import initAPIRoute from './route/api';
+// import connection from './configs/connectDB';
+const app = express();
 
- 
+require('dotenv').config();
+const port = process.env.PORT || 8080;
 
-// const express = require('express')
-import express from 'express'
-import configViewEngine from './configs/ViewEngine'
-const app = express()
+var morgan = require('morgan')
+app.use(morgan('combined'))
 
-require('dotenv').config() // muốn lấy port từ .env bắt buộc phải cài dotenv và require dotenv
-const port = process.env.PORT || 8080
 
-configViewEngine(app)
+// app.use((req, res, next) => {
+//     //check => return res.send()
+//     console.log('>>> run into my middleware')
+//     console.log(req.method)
+//     // next();
+// })
 
-app.get('/',(req,res) => {
-  res.render('test/index.ejs')
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+// setup view engine
+configViewEngine(app);
+
+//init web route
+initWebRoute(app);
+
+// init api route
+initAPIRoute(app);
+
+//handle 404 not found
+app.use((req, res) => {
+    return res.send('nhamvanhien')
 })
 
-app.get('/', (req, res) => {
-  res.send('Nham Van Hien')
-})
 
-app.listen(port, () => {
-  console.log(`http://localhost:${port}`)
+app.listen(3000, () => {
+    console.log(`Example app listening at http://localhost:3000`)
 })
