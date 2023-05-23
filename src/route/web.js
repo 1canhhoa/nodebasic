@@ -62,7 +62,6 @@ const initWebRoute = (app) => {
 
     router.get('/upload', homeController.getUploadFilePage);
     router.post('/upload-profile-pic', upload, homeController.handleUploadFile)
-
     router.post('/upload-multiple-images', middleMultiple , homeController.handleUploadMultipleFiles)
 
     router.get('/about', (req, res) => {

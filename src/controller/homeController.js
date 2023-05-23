@@ -1,12 +1,35 @@
 import pool from '../configs/connectDB';
+import MyModel from '../models/Course';
 import multer from 'multer';
 
+// let rules = {
+//     name : 'required',
+//     email : 'required|email'
+// }
 
-let getHomepage = async (req, res) => {
-    const [rows, fields] = await pool.execute('SELECT * FROM users');
-
-    return res.render('index.ejs', { dataUser: rows, test: 'abc string test' })
+let getHomepage = async (req, res ,next) => {
+    // let data = req.body
+    // let validation = new validation(data,rules)
+    // if(validation.fails()){
+    //     res.json(validation.error,400)
+    //     return
+    // }
+    console.log(req.body)
+    const newUser = new MyModel({ ...req.body })
+    const insertedUser = await newUser.save()
+    res.json(insertedUser)
 }
+// let getHomepage = async (req, res ,next) => {
+//         Course.findOne({})
+//         .then(courses => res.json(courses))
+//         .catch(next)
+
+
+
+// //     // const [rows, fields] = await pool.execute('SELECT * FROM users');
+
+// //     // return res.render('index.ejs', { dataUser: rows, test: 'abc string test' })
+// }
 
 let getDetailPage = async (req, res) => {
     let userId = req.params.id;
@@ -80,6 +103,6 @@ let handleUploadMultipleFiles = async (req, res) => {
 }
 
 module.exports = {
-    getHomepage, getDetailPage, createNewUser, deleteUser, getEditPage, postUpdateUser,
+    getHomepage,getDetailPage, createNewUser, deleteUser, getEditPage, postUpdateUser,
     getUploadFilePage, handleUploadFile, handleUploadMultipleFiles
 }
