@@ -55,14 +55,17 @@ const initWebRoute = (app) => {
     router.get('/', homeController.getHomepage);
     router.get('/detail/user/:id', homeController.getDetailPage);
     router.post('/create-new-user', homeController.createNewUser);
-
+    
     router.post('/delete-user', homeController.deleteUser);
     router.get('/edit-user/:id', homeController.getEditPage);
     router.post('/update-user', homeController.postUpdateUser);
-
+    
     router.get('/upload', homeController.getUploadFilePage);
     router.post('/upload-profile-pic', upload, homeController.handleUploadFile)
     router.post('/upload-multiple-images', middleMultiple , homeController.handleUploadMultipleFiles)
+    //mongodb
+    router.get('/mongo',homeController.getDataMongo);
+    router.get('/updateMongo',homeController.updateMongo);
 
     router.get('/about', (req, res) => {
         res.send(`nhamvanhien!`)

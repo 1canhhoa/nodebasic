@@ -1,35 +1,28 @@
 import pool from '../configs/connectDB';
 import MyModel from '../models/Course';
-import multer from 'multer';
 
-// let rules = {
-//     name : 'required',
-//     email : 'required|email'
-// }
 
-let getHomepage = async (req, res ,next) => {
-    // let data = req.body
-    // let validation = new validation(data,rules)
-    // if(validation.fails()){
-    //     res.json(validation.error,400)
-    //     return
-    // }
-    console.log(req.body)
-    const newUser = new MyModel({ ...req.body })
-    const insertedUser = await newUser.save()
-    res.json(insertedUser)
+let updateMongo = async (req,res) => {
+    const updateMonggo =await MyModel.updateOne({name:"nhamvanhien"},{name:"nhamhien123"})
+    .then(data => res.json(data))
+    .catch(err => res.json(err))
 }
-// let getHomepage = async (req, res ,next) => {
-//         Course.findOne({})
-//         .then(courses => res.json(courses))
-//         .catch(next)
 
+let getDataMongo = (req, res) => {
+    console.log("check mymodel",MyModel)
+    MyModel.create({
+        name:"nami",
+        class: "ga35hahah",
+    })
+    .then(data => res.json(data))
+    .catch(err => res.json(err))
+}
 
+let getHomepage = async(req, res ,next) => {
+    const [rows, fields] = await pool.execute('SELECT * FROM users');
 
-// //     // const [rows, fields] = await pool.execute('SELECT * FROM users');
-
-// //     // return res.render('index.ejs', { dataUser: rows, test: 'abc string test' })
-// }
+    return res.render('index.ejs', { dataUser: rows, test: 'abc string test' })
+}
 
 let getDetailPage = async (req, res) => {
     let userId = req.params.id;
@@ -104,5 +97,5 @@ let handleUploadMultipleFiles = async (req, res) => {
 
 module.exports = {
     getHomepage,getDetailPage, createNewUser, deleteUser, getEditPage, postUpdateUser,
-    getUploadFilePage, handleUploadFile, handleUploadMultipleFiles
+    getUploadFilePage, handleUploadFile, handleUploadMultipleFiles,updateMongo,getDataMongo
 }

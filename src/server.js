@@ -3,7 +3,6 @@ import configViewEngine from './configs/viewEngine';
 import initWebRoute from './route/web';
 import initAPIRoute from './route/api';
 import mongodb from './configs/mongodb'
-// import connection from './configs/connectDB';
 const app = express();
 
 // connect đến mongodb
