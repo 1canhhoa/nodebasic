@@ -1,8 +1,0 @@
-
-// đây là file cònig của trình compile
-
-{
-    "presets": [
-        "@babel/preset-env"
-    ]
-}
