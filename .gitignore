@@ -1,0 +1,6 @@
+# tạo ra để ko muốn đẩy 1 file nào đó lên src code
+node_modules
+.env
+abc.js
+hhh.js
+mocha.js
