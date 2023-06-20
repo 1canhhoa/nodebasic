@@ -10,6 +10,4 @@ let connection = async () =>  {
         console.log('failure')
     }
 }
-module.exports = {
-    connection
-}
+module.exports = connection

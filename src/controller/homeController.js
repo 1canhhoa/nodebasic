@@ -1,27 +1,70 @@
 import pool from '../configs/connectDB';
-import MyModel from '../models/Course';
+import mymodel from '../models/Course';
 
 
-let updateMongo = async (req,res) => {
-    const updateMonggo =await MyModel.updateOne({name:"nhamvanhien"},{name:"nhamhien123"})
+
+// MONGO ======================================================================================================================
+// DELETE MONGO 
+let deleteUserMongo = async (req,res) => {
+    const abc =await mymodel.MyModel.findOneAndDelete({name:"tohien"})
     .then(data => res.json(data))
     .catch(err => res.json(err))
 }
 
-let getDataMongo = (req, res) => {
-    console.log("check mymodel",MyModel)
-    MyModel.create({
-        name:"nami",
-        class: "ga35hahah",
-    })
+// CREATE MONGO
+let createMongo = async (req, res) => {
+    await mymodel.MyModel.insertMany([
+        {
+        firstName:"trajan",
+        lastName: "ga35hahah",
+        email: "nham1rfss@gmail.com",
+        password:"abcd"
+        },
+        {
+        firstName:"yasuo",
+        lastName: "ga35hahah",
+        email: "nham123@gmail.com",
+        password:"abcdf"
+        }
+    ])
+
     .then(data => res.json(data))
     .catch(err => res.json(err))
 }
 
+
+
+// UPDATE MONGO
+let updateMongo =(req,res) => {
+    mymodel.MyModel.updateMany({name:"Shriyam"},{name:"tohien"})
+    .then(data => res.json(data))
+    .catch(err => res.json(err))
+}
+
+// READ MONGO
+let getDataMongo = async (req, res,next) => {
+    const find = await mymodel.MyModel.find({})
+    // return res.render("indexMongo.ejs",{dataUser:find})
+    .then(data => res.json(data))
+    .catch(err => res.json(err))
+}
+// let getDataMongo = async (req, res,next) => {
+//     let find = await mymodel.MyModel.find({})
+//     //test lỗi : cố tình bắt lỗi ,nó sẽ chạy vào catch --> next--> đến code bắt lỗi ở file server 
+//     return Promise.reject(new Error('get data mongo ERROR!'))
+//     .then(data => res.json(data))
+//     // .catch(err =>next(err))
+//     .catch(next)
+// }
+
+
+
+// CONTROLLER MYSQL ==========================================================================================
 let getHomepage = async(req, res ,next) => {
     const [rows, fields] = await pool.execute('SELECT * FROM users');
-
-    return res.render('index.ejs', { dataUser: rows, test: 'abc string test' })
+    console.log("row",rows)
+    
+    return res.render('index.ejs', { dataUser:rows, test: 'abc string test' })
 }
 
 let getDetailPage = async (req, res) => {
@@ -60,6 +103,8 @@ let postUpdateUser = async (req, res) => {
     return res.redirect('/');
 }
 
+
+// UPLOAD FILE ================================================================================================
 let getUploadFilePage = async (req, res) => {
     return res.render('uploadFile.ejs')
 }
@@ -95,7 +140,9 @@ let handleUploadMultipleFiles = async (req, res) => {
 
 }
 
+
 module.exports = {
     getHomepage,getDetailPage, createNewUser, deleteUser, getEditPage, postUpdateUser,
-    getUploadFilePage, handleUploadFile, handleUploadMultipleFiles,updateMongo,getDataMongo
+    getUploadFilePage, handleUploadFile, handleUploadMultipleFiles,
+    updateMongo,getDataMongo,createMongo,deleteUserMongo
 }
